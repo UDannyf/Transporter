@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "139241598680",
+    "firebase_url": "https://seproamerica-lockec-fcm.firebaseio.com",
+    "project_id": "seproamerica-lockec-fcm",
+    "storage_bucket": "seproamerica-lockec-fcm.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:139241598680:android:5e8d53f5cfb7e146",
+        "android_client_info": {
+          "package_name": "ec.com.innovasystem.lockec"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "139241598680-q54vavlijcq38ju0ibnovq85lqdtlrvr.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBhWpgGiwvGgEd2G9RyVzlmUTwBe82KNNs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "139241598680-q54vavlijcq38ju0ibnovq85lqdtlrvr.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

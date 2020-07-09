@@ -1,0 +1,194 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="Lockec.Views.Services.GuardServiceDetailsPage"
+             xmlns:local="clr-namespace:Lockec.Views.Services"
+             xmlns:gradient="clr-namespace:Lockec.Controllers.Gradient"
+             BindingContext="{Binding Main, Source={StaticResource Locator}}">
+    
+    <ContentPage.Content>
+
+        <Grid>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <gradient:GradientLayout Grid.RowSpan="2" 
+                                     ColorsList="#D9D9D9, #FFFFFF, #D9D9D9" 
+                                     Mode="ToRight"/>
+
+            <Grid Grid.Row="0" 
+                  BindingContext="{Binding ServiceVM}"
+                  RowSpacing="10"
+                  Padding="20, 20, 20, 0">
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+
+                <StackLayout Grid.Row="0" 
+                         Grid.Column="0" 
+                         Orientation="Horizontal" 
+                         VerticalOptions="End">
+
+                    <Image Source="guardia.png" 
+                       HeightRequest="60" 
+                       WidthRequest="60" 
+                       BackgroundColor="Transparent"/>
+
+                    <StackLayout Spacing="0" 
+                             HorizontalOptions="Start">
+
+                        <Label x:Name="Lbl_Text" 
+                           Text="GUARDIANÍA" 
+                           FontSize="20" 
+                           TextColor="#5E7ABB" 
+                           VerticalTextAlignment="Center" 
+                           HorizontalOptions="Start"/>
+
+                        <StackLayout Orientation="Horizontal" 
+                                 Spacing="2" 
+                                 HorizontalOptions="Start">
+
+                            <Label Text="Fecha:"/>
+                            <Label Text="{Binding Path=ServiceDetailsInstance.Date}"/>
+
+                        </StackLayout>
+
+                        <StackLayout Orientation="Horizontal" 
+                                 Spacing="2" 
+                                 HorizontalOptions="Start">
+                            <Label Text="Hora: "/>
+                            <Label Text="{Binding StartTime, StringFormat='{0:hh\\:mm}'}"/>
+                            <Label Text=" - "/>
+                            <Label Text="{Binding EndTime, StringFormat='{0:hh\\:mm}'}"/>
+                        </StackLayout>
+
+                    </StackLayout>
+
+                </StackLayout>
+
+                <Label Grid.Row="0" 
+                       Grid.Column="2" 
+                       Text="{Binding TotalCost}"
+                       x:Name="Lbl_Cost" 
+                       FontAttributes="Bold" 
+                       TextColor="#4DB546" 
+                       FontSize="Large" 
+                       HorizontalOptions="End" 
+                       VerticalTextAlignment="Center" 
+                       HorizontalTextAlignment="End"/>
+
+                <StackLayout Grid.Row="1" 
+                             Grid.ColumnSpan="3" 
+                             HorizontalOptions="Fill" 
+                             VerticalOptions="End" 
+                             Spacing="0">
+
+                    <Label Text="Método de Pago" 
+                           FontSize="Small" 
+                           TextColor="Gray" 
+                           HorizontalOptions="Start"/>
+
+                    <Grid HorizontalOptions="Fill">
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+
+                        <Frame Grid.Column="0" 
+                           Grid.Row="0" 
+                           CornerRadius="10" 
+                           Padding="0" 
+                           HorizontalOptions="FillAndExpand" 
+                           VerticalOptions="Fill" 
+                           BackgroundColor="Transparent">
+
+
+                            <Grid VerticalOptions="FillAndExpand">
+
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+
+
+                                <Picker Grid.Column="0"
+                                    SelectedItem="{Binding Path=ServiceDetailsInstance.PaymentMethod, Mode=TwoWay}"
+                                    Title="Seleccionar" 
+                                    TitleColor="Black" 
+                                    TextColor="Black" 
+                                    FontSize="Small" 
+                                    VerticalOptions="FillAndExpand" 
+                                    HorizontalOptions="FillAndExpand">
+
+                                    <Picker.Items>
+                                        <x:String>T. Crédito</x:String>
+                                        <x:String>T. Débito</x:String>
+                                        <x:String>Efectivo</x:String>
+                                    </Picker.Items>
+
+                                </Picker>
+
+                                <!--Image Grid.Column="1" 
+                                   Source="flecha_abajo.png" 
+                                   HeightRequest="20" 
+                                   WidthRequest="20" 
+                                   HorizontalOptions="End" 
+                                   VerticalOptions="Center" 
+                                   BackgroundColor="Transparent"/-->
+
+                            </Grid>
+                        </Frame>
+
+                        <Button Grid.Column="1" 
+                            Grid.Row="0" 
+                            Text="CONFIRMAR" 
+                            TextColor="White" 
+                            FontSize="Small" 
+                            CornerRadius="10" 
+                            HorizontalOptions="FillAndExpand" 
+                            VerticalOptions="Center" 
+                            BackgroundColor="#79C7D7"
+                            Command="{Binding RequestServiceCommand}"/>
+
+                        <ImageButton Grid.Column="2" 
+                                 Grid.Row="0" 
+                                 Source="cancelar.png" 
+                                 HeightRequest="20" 
+                                 WidthRequest="20" 
+                                 HorizontalOptions="End" 
+                                 BackgroundColor="Transparent"
+                                 Command="{Binding NavigateToPageCommand}"
+                                 CommandParameter="{x:Type local:GuardServicePage}"/>
+
+                    </Grid>
+
+                </StackLayout>
+
+            </Grid>
+
+            <ContentView Grid.Row="1" 
+                         BindingContext="{Binding MapVM}"
+                         Content="{Binding Map}"
+                         IsEnabled="False"/>
+
+        </Grid>
+
+    </ContentPage.Content>
+</ContentPage>

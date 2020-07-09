@@ -1,0 +1,412 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:custom="clr-namespace:Lockec.Controllers.CustomElements"
+             xmlns:menuView="clr-namespace:Lockec.Views.Menu"
+             xmlns:gradient="clr-namespace:Lockec.Controllers.Gradient"
+             mc:Ignorable="d"
+             x:Class="Lockec.Views.Services.DriverServicePage"
+             BindingContext="{Binding Main, Source={StaticResource Locator}}">
+
+    <ContentPage.Content>
+
+        <Grid RowSpacing="0"
+              BackgroundColor="Transparent">
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <gradient:GradientLayout Grid.RowSpan="2" 
+                                     ColorsList="#D9D9D9, #FFFFFF, #D9D9D9" 
+                                     Mode="ToRight"/>
+
+            <ContentView Grid.Row="0" 
+                         BindingContext="{Binding MapVM}"
+                         Content="{Binding Map}">
+
+            </ContentView>
+
+            <ActivityIndicator Grid.Row="0" 
+                               HorizontalOptions="Center"
+                               VerticalOptions="Center"
+                               BindingContext="{Binding MapVM}"
+                               IsRunning="{Binding IsBusyOnMap}" 
+                               Color="Black"/>
+
+
+            <Grid Grid.Row="1"
+                  BindingContext="{Binding ServiceVM}"
+                  Padding="20, 20, 10, 10"
+                  ColumnSpacing="10" 
+                  RowSpacing="10">
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+
+                <StackLayout Grid.Row="0" 
+                             Grid.Column="1" 
+                             Grid.ColumnSpan="2"
+                             Orientation="Horizontal" 
+                             Spacing="0"  
+                             HorizontalOptions="Fill" 
+                             VerticalOptions="Center">
+
+                    <StackLayout Orientation="Horizontal" 
+                                 Spacing="20" 
+                                 HorizontalOptions="StartAndExpand" 
+                                 VerticalOptions="Center">
+
+                        <ImageButton Source="flecha_atras.png" 
+                                     BackgroundColor="Transparent"
+                                     HeightRequest="10" 
+                                     WidthRequest="10"
+                                     Command="{Binding NavigateToPageCommand}"
+                                     CommandParameter="{x:Type menuView:MenuPage}"/>
+
+                        <Label Text="CHOFER GUARDAESPALDAS" 
+                               TextColor="#5E7ABB" 
+                               FontSize="Medium" 
+                               FontAttributes="Bold" 
+                               HorizontalOptions="Start"
+                               VerticalTextAlignment="Center" 
+                               VerticalOptions="Center"/>
+
+                    </StackLayout>
+
+                    <Image Source="driver.png" 
+                               HeightRequest="50" 
+                               WidthRequest="50" 
+                               HorizontalOptions="End"
+                               BackgroundColor="Transparent"/>
+
+
+
+                </StackLayout>
+
+                <StackLayout Grid.Row="1" 
+                             Grid.Column="1" 
+                             Grid.ColumnSpan="2" 
+                             Spacing="0">
+
+                    <Frame CornerRadius="10" 
+                           Padding="0" 
+                           IsClippedToBounds="True"
+                           VerticalOptions="FillAndExpand" 
+                           BackgroundColor="Transparent">
+
+                        <Grid HorizontalOptions="FillAndExpand" 
+                              VerticalOptions="FillAndExpand">
+
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <gradient:GradientLayout Grid.ColumnSpan="2" 
+                                                     ColorsList="#CAD0DD, #DEE4F1, #CAD0DD" 
+                                                     Mode="ToRight"/>
+
+                            <Image Grid.Column="0" 
+                                   Source="pointer.png" 
+                                   HeightRequest="20" 
+                                   WidthRequest="20" 
+                                   VerticalOptions="Center" 
+                                   BackgroundColor="Transparent"/>
+
+                            <Label Grid.Column="1" 
+                                   HorizontalOptions="Fill"
+                                   x:Name="Ent_Origin"
+                                   Text="Toca aquí para escribir la dirección"
+                                   FontSize="Small"
+                                   TextColor="Black"
+                                   VerticalTextAlignment="Center">
+
+                                <Label.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"/>
+                                </Label.GestureRecognizers>
+
+                            </Label>
+                        </Grid>
+                    </Frame>
+                </StackLayout>
+
+                <!--DATEPICKER-->
+                <StackLayout Grid.Row="2" 
+                             Grid.Column="1"
+                             Spacing="0">
+
+                    <Frame CornerRadius="10" 
+                           Padding="0" 
+                           IsClippedToBounds="True"
+                           VerticalOptions="FillAndExpand" 
+                           BackgroundColor="Transparent">
+
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <gradient:GradientLayout Grid.ColumnSpan="2" 
+                                                     ColorsList="#CAD0DD, #DEE4F1, #CAD0DD" 
+                                                     Mode="ToRight"/>
+
+                            <Image Grid.Column="0" 
+                                   Source="calendar.png" 
+                                   HeightRequest="20" 
+                                   WidthRequest="20" 
+                                   VerticalOptions="Center" 
+                                   BackgroundColor="Transparent"/>
+
+                            <DatePicker Grid.Column="1"
+                                        Date="{Binding Date, Mode=TwoWay}"
+                                        FontSize="Small" 
+                                        TextColor="Black"
+                                        Format="d" 
+                                        VerticalOptions="Center"/>
+                        </Grid>
+                    </Frame>
+                </StackLayout>
+                <!--END DATEPICKER-->
+                
+                <StackLayout Grid.Row="2" 
+                             Grid.Column="2" 
+                             Spacing="0">
+
+                    <Frame CornerRadius="10" 
+                           Padding="0" 
+                           IsClippedToBounds="True"
+                           VerticalOptions="FillAndExpand" 
+                           BackgroundColor="Transparent">
+
+                        <Grid>
+
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+
+                            <gradient:GradientLayout Grid.ColumnSpan="2" 
+                                                     ColorsList="#CAD0DD, #DEE4F1, #CAD0DD" 
+                                                     Mode="ToRight"/>
+
+                            <custom:CustomTimePicker Grid.Column="0"
+                                                     Time="{Binding StartTime, Mode=TwoWay}"
+                                                     Placeholder="Hora Inicio"
+                                                     PlaceholderColor="Black"
+                                                     Underline="True"
+                                                     Format="t"
+                                                     FontSize="Small" 
+                                                     VerticalOptions="Center"/>
+
+                            <Image Grid.Column="1" 
+                                   Source="reloj.png" 
+                                   HeightRequest="20" 
+                                   WidthRequest="20" 
+                                   VerticalOptions="Center" 
+                                   HorizontalOptions="End" 
+                                   BackgroundColor="Transparent"/>
+                        </Grid>
+                    </Frame>
+                </StackLayout>
+
+                <!--DATEPICKER-->
+                <StackLayout Grid.Row="3" 
+                             Grid.Column="1"
+                             Spacing="0">
+
+                    <Frame CornerRadius="10" 
+                           Padding="0" 
+                           IsClippedToBounds="True"
+                           VerticalOptions="FillAndExpand" 
+                           BackgroundColor="Transparent">
+
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <gradient:GradientLayout Grid.ColumnSpan="2" 
+                                                     ColorsList="#CAD0DD, #DEE4F1, #CAD0DD" 
+                                                     Mode="ToRight"/>
+
+                            <Image Grid.Column="0" 
+                                   Source="calendar.png" 
+                                   HeightRequest="20" 
+                                   WidthRequest="20" 
+                                   VerticalOptions="Center" 
+                                   BackgroundColor="Transparent"/>
+
+                            <DatePicker Grid.Column="1"
+                                        Date="{Binding EndDate, Mode=TwoWay}"
+                                        FontSize="Small" 
+                                        TextColor="Black"
+                                        Format="d" 
+                                        VerticalOptions="Center"/>
+                        </Grid>
+                    </Frame>
+                </StackLayout>
+                <!--END DATEPICKER-->
+                
+                <StackLayout Grid.Row="3" 
+                             Grid.Column="2" 
+                             Spacing="0">
+
+                    <Frame CornerRadius="10" 
+                           Padding="0" 
+                           IsClippedToBounds="True"
+                           VerticalOptions="FillAndExpand" 
+                           BackgroundColor="Transparent">
+
+                        <Grid>
+
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+
+                            <gradient:GradientLayout Grid.ColumnSpan="2" 
+                                                     ColorsList="#CAD0DD, #DEE4F1, #CAD0DD" 
+                                                     Mode="ToRight"/>
+
+                            <custom:CustomTimePicker Grid.Column="0" 
+                                                     Time="{Binding EndTime, Mode=TwoWay}"
+                                                     Placeholder="Hora Fin"
+                                                     PlaceholderColor="Black"
+                                                     Underline="True"
+                                                     Format="t"
+                                                     FontSize="Small" 
+                                                     VerticalOptions="Center"/>
+
+                            <Image Grid.Column="1" 
+                                   Source="reloj.png" 
+                                   HeightRequest="20" 
+                                   WidthRequest="20" 
+                                   VerticalOptions="Center" 
+                                   HorizontalOptions="End" 
+                                   BackgroundColor="Transparent"/>
+                        </Grid>
+                    </Frame>
+                </StackLayout>
+
+                <StackLayout Grid.Row="4"
+                             Grid.Column="1"
+                             Spacing="0">
+
+                    <Frame CornerRadius="10" 
+                           Padding="0" 
+                           IsClippedToBounds="True"
+                           VerticalOptions="FillAndExpand" 
+                           BackgroundColor="Transparent">
+
+                        <Grid>
+
+
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <gradient:GradientLayout Grid.ColumnSpan="2" 
+                                                     ColorsList="#CAD0DD, #DEE4F1, #CAD0DD" 
+                                                     Mode="ToRight"/>
+
+                            <CheckBox Grid.Row="0"
+                                      Grid.Column="0"  
+                                      IsChecked="{Binding IsGuardDriver, Mode=TwoWay}"/>
+
+                            <Label Grid.Row="0"
+                                   Grid.Column="1"  
+                                   Text="Chofer Guardaespaldas"
+                                   FontSize="Micro"
+                                   TextColor="Black"
+                                   VerticalOptions="Center"
+                                   VerticalTextAlignment="Center"/>
+
+                        </Grid>
+                    </Frame>
+                </StackLayout>
+
+
+                <StackLayout Grid.Row="4"
+                             Grid.Column="2"
+                             Spacing="0">
+
+                    <Frame CornerRadius="10" 
+                           Padding="0" 
+                           IsClippedToBounds="True"
+                           VerticalOptions="FillAndExpand" 
+                           BackgroundColor="Transparent">
+                        
+                        <Grid>
+
+                           
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <gradient:GradientLayout Grid.ColumnSpan="2" 
+                                                     ColorsList="#CAD0DD, #DEE4F1, #CAD0DD" 
+                                                     Mode="ToRight"/>
+
+                            <CheckBox Grid.Row="0"
+                                      Grid.Column="0"  
+                                      IsChecked="{Binding IsRentCar, Mode=TwoWay}"/>
+                            
+                            <Label Grid.Row="0"
+                                   Grid.Column="1"  
+                                   Text="Incluir Vehículo"
+                                   FontSize="Micro"
+                                   TextColor="Black"
+                                   VerticalOptions="Center"
+                                   VerticalTextAlignment="Center"/>
+                            
+                        </Grid>
+                    </Frame>
+                </StackLayout>
+
+
+
+
+                <ImageButton Grid.Row="4" 
+                             Grid.Column="3" 
+                             Source="flecha.png" 
+                             WidthRequest="10" 
+                             HeightRequest="10" 
+                             HorizontalOptions="Fill" 
+                             BackgroundColor="Transparent"
+                             Command="{Binding GoToDriverCommand}"/>
+
+                <ActivityIndicator IsRunning="{Binding IsRunning}"
+                                   Grid.Row="2"
+                                   Grid.Column="1"
+                                   Grid.ColumnSpan="2"
+                                   HorizontalOptions="Center" 
+                                   VerticalOptions="Start"
+                                   Color="Black"/>
+
+            </Grid>
+
+        </Grid>
+
+    </ContentPage.Content>
+
+</ContentPage>

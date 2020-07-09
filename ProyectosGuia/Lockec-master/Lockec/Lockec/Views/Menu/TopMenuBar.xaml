@@ -1,0 +1,61 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="Lockec.Views.Menu.TopMenuBar"
+             NavigationPage.HasNavigationBar="False"
+             xmlns:accountViews="clr-namespace:Lockec.Views.Account"
+             BindingContext="{Binding Main, Source={StaticResource Locator}}">
+    
+  <ContentView.Content>
+
+        <Grid Grid.Row="0" 
+              ColumnSpacing="0" 
+              RowSpacing="0"
+              Padding="20,20,20,0">
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <StackLayout Grid.Column="0" 
+                         Orientation="Horizontal" 
+                         Spacing="10" 
+                         HorizontalOptions="Fill">
+
+                <ImageButton BindingContext="{Binding AccountVM}"
+                             Source="avatar2.png"
+                             WidthRequest="50" 
+                             HeightRequest="50" 
+                             BackgroundColor="Transparent"/>
+
+                <Button BindingContext="{Binding MenuVM}"
+                       Text="{Binding Path=PersonalAccountInstance.Name}"
+                       FontSize="Small" 
+                       BackgroundColor="Transparent"
+                       Command="{Binding NavigateCommand}"
+                        CommandParameter="{x:Type accountViews:ProfilePage}"/>
+
+            </StackLayout>
+
+            <Image Grid.Column="1"
+                   Source="lockec_security.png"
+                   WidthRequest="100" 
+                   HeightRequest="80" 
+                   HorizontalOptions="End" 
+                   VerticalOptions="Center"
+                   BackgroundColor="Transparent"/>
+
+            <BoxView Grid.ColumnSpan="2" 
+                     BackgroundColor="Gray" 
+                     HeightRequest="1" 
+                     VerticalOptions="End" 
+                     HorizontalOptions="Fill"/>
+
+        </Grid>
+
+    </ContentView.Content>
+</ContentView>

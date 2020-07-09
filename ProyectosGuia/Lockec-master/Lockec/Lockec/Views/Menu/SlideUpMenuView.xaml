@@ -1,0 +1,264 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<slide:SlideMenuView xmlns="http://xamarin.com/schemas/2014/forms"
+                     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                     xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+                     xmlns:gradient="clr-namespace:Lockec.Controllers.Gradient"
+                     xmlns:cc="clr-namespace:Lockec.Views.CreditCard"
+                     xmlns:login="clr-namespace:Lockec.Views.Login"
+                     xmlns:local="clr-namespace:Lockec.Views.Menu"
+                     xmlns:menuOptions="clr-namespace:Lockec.Views.MenuOptions"
+                     xmlns:slide="clr-namespace:SlideOverKit;assembly=SlideOverKit"
+                     mc:Ignorable="d"
+                     x:Class="Lockec.Views.Menu.SlideUpMenuView"
+                     NavigationPage.HasNavigationBar="False"
+                     BindingContext="{Binding Main, Source={StaticResource Locator}}">
+
+    <gradient:GradientLayout ColorsList="#76AADB, #5E7ABB"
+                             Mode="ToRight"
+                             Padding="20,5,20,5">
+        
+        <Grid>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="9*"/>
+            </Grid.ColumnDefinitions>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <!--INICIO BOTON MENU-->
+            <!--Image Grid.Row="0" 
+               Grid.ColumnSpan="2" 
+               WidthRequest="20" 
+               HeightRequest="20" 
+               Source="flecha_menu" 
+               BackgroundColor="Transparent"/-->
+            <BoxView Grid.Row="0" 
+                 Grid.ColumnSpan="2"
+                 BackgroundColor="White" 
+                 HeightRequest="1" 
+                 VerticalOptions="End" 
+                 HorizontalOptions="Fill"/>
+            <!--FIN BOTON MENU-->
+
+            <!--INICIO BOTON SERVICIOS-->
+            <Image Grid.Row="1" 
+               Grid.Column="0" 
+               WidthRequest="25" 
+               HeightRequest="25" 
+               VerticalOptions="Center" 
+               HorizontalOptions="End"
+               Source="menu_servicios.png" 
+               BackgroundColor="Transparent"/>
+
+            <Button Grid.Row="1" 
+                Grid.Column="1"  
+                Text="SERVICIOS" 
+                TextColor="White" 
+                HorizontalOptions="Start" 
+                BackgroundColor="Transparent"
+                BindingContext="{Binding MenuVM}"
+                Command="{Binding NavigateCommand}"
+                CommandParameter="{x:Type local:MenuPage}"/>
+
+            <BoxView Grid.Row="1" 
+                 Grid.ColumnSpan="2"
+                 BackgroundColor="White" 
+                 HeightRequest="1" 
+                 VerticalOptions="End" 
+                 HorizontalOptions="Fill"/>
+            <!--FIN BOTON SERVICIOS-->
+
+            <!--INICIO BOTON HISTORIAL DE SERVICIOS-->
+            <Image Grid.Row="2" 
+               Grid.Column="0" 
+               WidthRequest="25" 
+               HeightRequest="25" 
+               VerticalOptions="Center" 
+               HorizontalOptions="End"
+               Source="menu_historial.png" 
+               BackgroundColor="Transparent"/>
+
+            <Button Grid.Row="2" 
+                Grid.Column="1"  
+                Text="HISTORIAL DE SERVICIOS" 
+                TextColor="White" 
+                HorizontalOptions="Start" 
+                BackgroundColor="Transparent"
+                BindingContext="{Binding MenuVM}"
+                Command="{Binding NavigateCommand}"
+                CommandParameter="{x:Type menuOptions:HistoryPage}"/>
+
+            <BoxView Grid.Row="2" 
+                 Grid.ColumnSpan="2"
+                 BackgroundColor="White" 
+                 HeightRequest="1" 
+                 VerticalOptions="End" 
+                 HorizontalOptions="Fill"/>
+            <!--FIN BOTON HISTORIAL DE SERVICIOS-->
+
+            <!--INICIO BOTON ANOMALIAS O EVENTUALIDADES-->
+            <Image Grid.Row="3" 
+               Grid.Column="0" 
+               WidthRequest="25" 
+               HeightRequest="25" 
+               VerticalOptions="Center" 
+               HorizontalOptions="End"
+               Source="menu_eventualidades.png" 
+               BackgroundColor="Transparent"/>
+
+            <Button Grid.Row="3" 
+                Grid.Column="1"  
+                Text="ANOMALIAS O EVENTUALIDADES" 
+                TextColor="White" 
+                HorizontalOptions="Start" 
+                BackgroundColor="Transparent"
+                BindingContext="{Binding MenuVM}"
+                Command="{Binding NavigateCommand}"
+                CommandParameter="{x:Type menuOptions:AnomaliesPage}"/>
+
+            <BoxView Grid.Row="3" 
+                 Grid.ColumnSpan="2"
+                 BackgroundColor="White" 
+                 HeightRequest="1" 
+                 VerticalOptions="End" 
+                 HorizontalOptions="Fill"/>
+            <!--FIN BOTON ANOMALIAS O EVENTUALIDADES-->
+
+            <!--INICIO BOTON NOTIFICACIONES-->
+            <Image Grid.Row="4" 
+               Grid.Column="0" 
+               WidthRequest="25" 
+               HeightRequest="25" 
+               VerticalOptions="Center" 
+               HorizontalOptions="End"
+               Source="menu_notificaciones.png" 
+               BackgroundColor="Transparent"/>
+
+            <Button Grid.Row="4" 
+                Grid.Column="1"  
+                Text="NOTIFICACIONES" 
+                TextColor="White" 
+                HorizontalOptions="Start" 
+                BackgroundColor="Transparent"
+                BindingContext="{Binding MenuVM}"
+                Command="{Binding NavigateCommand}"
+                CommandParameter="{x:Type menuOptions:NotificationsPage}"/>
+
+            <BoxView Grid.Row="4" 
+                 Grid.ColumnSpan="2"
+                 BackgroundColor="White" 
+                 HeightRequest="1" 
+                 VerticalOptions="End" 
+                 HorizontalOptions="Fill"/>
+            <!--FIN BOTON NOTIFICACIONES-->
+
+            <!--INICIO BOTON CHAT-->
+            <Image Grid.Row="5" 
+               Grid.Column="0" 
+               WidthRequest="25" 
+               HeightRequest="25" 
+               VerticalOptions="Center" 
+               HorizontalOptions="End"
+               Source="menu_chat.png" 
+               BackgroundColor="Transparent"/>
+
+            <Button Grid.Row="5" 
+                Grid.Column="1"  
+                Text="CHAT EN LÍNEA" 
+                TextColor="White" 
+                HorizontalOptions="Start" 
+                BackgroundColor="Transparent"
+                BindingContext="{Binding MenuVM}"
+                Command="{Binding NavigateCommand}"
+                CommandParameter="{x:Type menuOptions:ChatPage}"/>
+
+            <BoxView Grid.Row="5" 
+                 Grid.ColumnSpan="2"
+                 BackgroundColor="White" 
+                 HeightRequest="1" 
+                 VerticalOptions="End" 
+                 HorizontalOptions="Fill"/>
+            <!--FIN BOTON CHAT-->
+
+
+            <!--INICIO BOTON SUGERENCIAS Y COMENTARIOS-->
+            <Image Grid.Row="6" 
+               Grid.Column="0" 
+               WidthRequest="25" 
+               HeightRequest="25" 
+               VerticalOptions="Center" 
+               HorizontalOptions="End"
+               Source="menu_sugerencias.png" 
+               BackgroundColor="Transparent"/>
+
+            <Button Grid.Row="6" 
+                Grid.Column="1"  
+                Text="COMENTARIOS Y SUGERENCIAS" 
+                TextColor="White" 
+                HorizontalOptions="Start" 
+                BackgroundColor="Transparent"
+                BindingContext="{Binding MenuVM}"
+                Command="{Binding NavigateCommand}"
+                CommandParameter="{x:Type menuOptions:CommentsPage}"/>
+
+            <BoxView Grid.Row="6" 
+                 Grid.ColumnSpan="2"
+                 BackgroundColor="White" 
+                 HeightRequest="1" 
+                 VerticalOptions="End" 
+                 HorizontalOptions="Fill"/>
+            <!--FIN BOTON SUGERENCIAS Y COMENTARIOS-->
+
+            <!--INICIO BOTON ESCANER-->
+            <Image Grid.Row="7" 
+               Grid.Column="0" 
+               WidthRequest="25" 
+               HeightRequest="25" 
+               VerticalOptions="Center" 
+               HorizontalOptions="End"
+               Source="menu_qr.png" 
+               BackgroundColor="Transparent"/>
+
+            <Button Grid.Row="7" 
+                Grid.Column="1"  
+                Text="SCANNEAR QR" 
+                TextColor="White" 
+                HorizontalOptions="Start" 
+                BackgroundColor="Transparent"
+                BindingContext="{Binding BarVM}"
+                Command="{Binding BarcodeScannerCommand}"/>
+
+            <BoxView Grid.Row="7" 
+                 Grid.ColumnSpan="2"
+                 BackgroundColor="White" 
+                 HeightRequest="1" 
+                 VerticalOptions="End" 
+                 HorizontalOptions="Fill"/>
+            <!--FIN BOTON ESCANER -->
+
+            <Button Grid.Row="8" 
+                Grid.ColumnSpan="2"
+                Text="CERRAR SESIÓN" 
+                TextColor="White" 
+                BackgroundColor="Transparent"
+                BindingContext="{Binding LoginVM}"
+                Command="{Binding LogoutCommand}"/>
+        </Grid>
+
+    </gradient:GradientLayout>
+    
+
+
+</slide:SlideMenuView>

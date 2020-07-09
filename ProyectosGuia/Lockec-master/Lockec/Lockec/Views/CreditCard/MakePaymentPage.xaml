@@ -1,0 +1,95 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="Lockec.Views.CreditCard.MakePaymentPage"
+             NavigationPage.HasNavigationBar="False"
+             BindingContext="{Binding Main, Source={StaticResource Locator}}">
+
+
+    <Grid x:Name="MyGrid" 
+          BindingContext="{Binding PayVM}">
+
+        <WebView Source="{Binding PaymentURL}"
+                 VerticalOptions="Fill"
+                 Navigating="WebView_Navigating"/>
+
+        <ActivityIndicator IsRunning="{Binding IsLoading, Mode= TwoWay}"
+                           VerticalOptions="Center"
+                           HorizontalOptions="Center"/>
+
+    </Grid>
+    
+    <!--WebView Source="https://test.placetopay.ec/redirection/session/129786/7666c34037405067f872cd5fd26f5469"
+             VerticalOptions="Fill"/>
+    
+    <Grid VerticalOptions="Fill">
+
+        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+        </>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+
+        <Grid Grid.Row="0" Grid.Column="0" Padding="20,10">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <ImageButton Grid.Row="0" Grid.Column="0" Source="exit.png" WidthRequest="10" HeightRequest="10" HorizontalOptions="Start" BackgroundColor="Transparent" Clicked="ImageButton_Exit_Clicked"/>
+            <Label Grid.Row="0" Grid.Column="2" Text="REALIZAR PAGO" TextColor="Black" FontSize="Medium" HorizontalOptions="Center" VerticalOptions="Center"/>
+        </Grid>
+
+        <StackLayout Grid.Row="1" Grid.Column="0" Padding="20,0">
+
+            <StackLayout HorizontalOptions="Fill">
+                
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" Text="Tus Tarjetas" TextColor="Black" FontAttributes="Bold"/>
+                    <Label Grid.Row="0" Grid.Column="3" Text="Titular"/>
+                    <Label Grid.Row="0" Grid.Column="4" Text="Expira"/>
+
+                    <CheckBox Grid.Row="1" Grid.Column="0" VerticalOptions="Center"/>
+                    <Label Grid.Row="1" Grid.Column="1" Text="Visa" VerticalTextAlignment="Center" VerticalOptions="Center"/>
+                    <Label Grid.Row="1" Grid.Column="2" Text="Terminada en 2098" VerticalTextAlignment="Center" VerticalOptions="Center"/>
+                    <Label Grid.Row="1" Grid.Column="3" Text="Mad" VerticalTextAlignment="Center" VerticalOptions="Center"/>
+                    <Label Grid.Row="1" Grid.Column="4" Text="06/22" VerticalTextAlignment="Center" VerticalOptions="Center"/>
+                    <BoxView Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="5" BackgroundColor="Black" HeightRequest="1" VerticalOptions="End" HorizontalOptions="FillAndExpand"/>
+
+                </Grid>
+
+            </StackLayout>
+
+            <Button Text="Agregar DTC" TextColor="White" BackgroundColor="#79C7D7" Clicked="Button_AddCC_Clicked" />
+
+
+
+            <StackLayout>
+                <Label Text="Monto a Pagar" FontSize="Medium" FontAttributes="Bold"/>
+                <Label x:Name="Lbl_FinalCost" FontSize="Large" FontAttributes="Bold" TextColor="#4DB546"/>
+                <Button Text="CONFIRMAR PAGO" TextColor="White" BackgroundColor="#79C7D7" Clicked="Button_Confirm_Clicked"/>
+            </StackLayout>
+
+        </StackLayout>
+        
+    <Grid-->
+
+</ContentPage>

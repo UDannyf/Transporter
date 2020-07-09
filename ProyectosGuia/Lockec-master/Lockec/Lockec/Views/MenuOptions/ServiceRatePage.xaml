@@ -1,0 +1,131 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:gradient="clr-namespace:Lockec.Controllers.Gradient"
+             xmlns:controls="clr-namespace:Lockec.Controllers.CustomElements"
+             mc:Ignorable="d"
+             NavigationPage.HasNavigationBar="False"
+             x:Class="Lockec.Views.MenuOptions.ServiceRatePage"
+             xmlns:menu="clr-namespace:Lockec.Views.Menu"
+             BindingContext="{Binding Main, Source={StaticResource Locator}}">
+
+    <ContentPage.Content>
+
+        <ScrollView>
+            <ScrollView.Content>
+
+                <Grid Padding="40, 20" 
+                      RowSpacing="20"
+                      BindingContext="{Binding ServiceSumVM}">
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <Grid ColumnSpacing="0" RowSpacing="0">
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+
+                        <Image Grid.Column="1" 
+                               Grid.Row="0" 
+                               Source="lockec_security.png" 
+                               HorizontalOptions="End" 
+                               VerticalOptions="Center" 
+                               WidthRequest="100" 
+                               HeightRequest="80" 
+                               BackgroundColor="Transparent"/>
+                    </Grid>
+
+                    <StackLayout Grid.Row="1" 
+                                 HorizontalOptions="Fill">
+                        <Label Text="¡CALIFICA EL SERVICIO!" 
+                               FontSize="Medium" 
+                               TextColor="#5E7ABB" 
+                               FontAttributes="Bold" 
+                               HorizontalTextAlignment="Center" 
+                               HorizontalOptions="Fill"/>
+                        <Image Source="driver.png" 
+                               HorizontalOptions="Center" 
+                               WidthRequest="100" 
+                               HeightRequest="100" 
+                               BackgroundColor="Transparent"/>
+                    </StackLayout>
+
+                    <StackLayout Grid.Row="2" 
+                                 HorizontalOptions="Fill">
+                        <Label Text="¿Cómo calificarías tu experiencia?" 
+                               FontSize="Small" 
+                               TextColor="Gray" 
+                               HorizontalOptions="Start"/>
+                        <Picker HorizontalOptions="FillAndExpand"
+                                SelectedItem="{Binding RateValue, Mode=TwoWay}">
+                            <Picker.Items>
+                                <x:String>Pésima</x:String>
+                                <x:String>Mala</x:String>
+                                <x:String>Regular</x:String>
+                                <x:String>Buena</x:String>
+                                <x:String>Excelente</x:String>
+                            </Picker.Items>
+                        </Picker>
+
+                    </StackLayout>
+
+                    <StackLayout Grid.Row="3" 
+                                 Grid.RowSpan="2" 
+                                 HorizontalOptions="Fill">
+                        <Label Text="Déjanos un comentario"/>
+                        <Frame CornerRadius="10" 
+                               Padding="0" 
+                               VerticalOptions="FillAndExpand" 
+                               BackgroundColor="#DFE4F1">
+                            <gradient:GradientLayout Padding="10,0" 
+                                                     ColorsList="#CAD0DD, #DEE4F1, #CAD0DD"
+                                                     Mode="ToRight">
+                                <controls:CustomEditor Placeholder="Escribe un comentario..."
+                                                       Text="{Binding Commentary, Mode=TwoWay}"
+                                                       VerticalOptions="FillAndExpand" 
+                                                       Keyboard="Chat"/>
+                            </gradient:GradientLayout>
+                        </Frame>
+                    </StackLayout>
+
+                    <StackLayout Grid.Row="5" 
+                                 Padding="50,10" 
+                                 Spacing="0">
+                        <Button Text="CALIFICAR" 
+                                TextColor="White" 
+                                BackgroundColor="#79C7D7"
+                                Command="{Binding MakeRateCommand}"/>
+                        <Button Text="Calificar después" 
+                                TextColor="#1F294D" 
+                                FontSize="Micro" 
+                                BackgroundColor="Transparent"
+                                Command="{Binding NavigateServiceCommand}"
+                                CommandParameter="{x:Type menu:MenuPage}"/>
+                    </StackLayout>
+
+                </Grid>
+
+            </ScrollView.Content>
+        </ScrollView>
+        
+
+    </ContentPage.Content>
+    
+
+</ContentPage>

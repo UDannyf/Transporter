@@ -1,0 +1,109 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:local="clr-namespace:Lockec.Views.Login"
+             xmlns:xfg="clr-namespace:XFGloss;assembly=XFGloss"
+             mc:Ignorable="d"
+             x:Class="Lockec.Views.Login.CodePage"
+             NavigationPage.HasNavigationBar="False"
+             Title="Login"
+             BindingContext="{Binding Main, Source={StaticResource Locator}}">
+
+    <!--DEGRADADO-->
+    <xfg:ContentPageGloss.BackgroundGradient>
+        <xfg:Gradient IsRotationLeftToRight="True"
+                      StartColor="#76AADB" 
+                      EndColor="#5E7ABB"/>
+    </xfg:ContentPageGloss.BackgroundGradient>
+    <!--FIN DEGRADADO-->
+    <ScrollView>
+        <ScrollView.Content>
+            <Grid BindingContext="{Binding LoginVM}"
+          Padding="30">
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <ImageButton Grid.Row="0"
+                     VerticalOptions="Start"
+                     HorizontalOptions="Start"
+                     WidthRequest="20"
+                     HeightRequest="20"
+                     Source="flecha_atras.png"
+                     BackgroundColor="Transparent"
+                     Command="{Binding NavigateToPageCommand}"
+                     CommandParameter="{x:Type local:LoginPage}"/>
+
+                <Image Grid.Row="1"
+               Margin="50"
+               VerticalOptions="Start"
+               HorizontalOptions="Center"
+               Source="lockec_security.png"
+               Aspect="AspectFit"/>
+
+                <StackLayout Grid.Row="2"
+                     Orientation="Vertical"
+                     Spacing="5"
+                     HorizontalOptions="Center"
+                     VerticalOptions="Center">
+
+                    <Label Text="Introduce el código de 4 dígitos que te enviamos a"
+                   FontSize="Small"
+                   TextColor="White"
+                   HorizontalOptions="Center"
+                   HorizontalTextAlignment="Center"/>
+
+                    <Label Text="{Binding PhoneNumber, StringFormat='+593 {0}'}"
+                   FontSize="Large"
+                   TextColor="White"
+                   HorizontalOptions="Center"
+                   HorizontalTextAlignment="Center"/>
+
+                    <Button Text="Modificar número de teléfono móvil"
+                    FontSize="Micro"
+                    TextColor="#1F294D"
+                    FontAttributes="Bold"
+                    HorizontalOptions="Center"
+                    BackgroundColor="Transparent"
+                    Command="{Binding NavigateToPageCommand}"
+                    CommandParameter="{x:Type local:LoginPage}"/>
+
+                </StackLayout>
+
+                <StackLayout Grid.Row="3"
+                     Spacing="20"
+                     VerticalOptions="Start"
+                     HorizontalOptions="Fill">
+
+                    <Frame CornerRadius="5" 
+                   Padding="0" 
+                   BackgroundColor="#E9EAED"
+                   IsClippedToBounds="True">
+
+                        <Entry HorizontalTextAlignment="Center" 
+                       Keyboard="Numeric"
+                       Text="{Binding VerificationCode}"/>
+
+                    </Frame>
+
+                    <Button Grid.Row="1"
+                    Text="ACEPTAR"
+                    CornerRadius="5"
+                    TextColor="White"
+                    BackgroundColor="#79C7D7"
+                    Command="{Binding LoginCommand}"/>
+
+                </StackLayout>
+
+
+
+            </Grid>
+        </ScrollView.Content>
+    </ScrollView>
+</ContentPage>

@@ -1,0 +1,75 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="Lockec.Views.Services.FinalServiceDetailsView"
+             NavigationPage.HasNavigationBar="False"
+             BindingContext="{Binding Main, Source={StaticResource Locator}}">
+
+    <Grid BindingContext="{Binding NotVM}">
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+
+        <StackLayout Grid.Row="0"
+                     Orientation="Horizontal" 
+                     Spacing="2" 
+                     HorizontalOptions="Start">
+            <Label Text="Servicio:" 
+                   TextColor="Gray"/>
+            <Label Text="{Binding ServiceName}" TextColor="Black"/>
+        </StackLayout>
+
+        <StackLayout Grid.Row="1"
+                     Orientation="Horizontal" 
+                     Spacing="2" 
+                     HorizontalOptions="Start">
+            <Label Text="Fecha:" 
+                   TextColor="Gray"/>
+            <Label Text="{Binding Date}" 
+                   TextColor="Black"/>
+        </StackLayout>
+
+        <StackLayout Grid.Row="2"
+                     Orientation="Horizontal" 
+                     Spacing="2" 
+                     HorizontalOptions="Start">
+            <Label Text="Hora:" 
+                   TextColor="Gray"/>
+            <Label Text="{Binding Hour, StringFormat='{0:hh\\:mm}'}" TextColor="Black"/>
+            <!--Label Text=" - "/>
+            <Label Text="{Binding EndTime, StringFormat='{0:hh\\:mm}'}"/-->
+        </StackLayout>
+
+        <StackLayout Grid.Row="3"
+                     Orientation="Horizontal" 
+                     Spacing="2" 
+                     HorizontalOptions="Start">
+            <Label Text="Monto a Pagar:" 
+                   TextColor="Gray"/>
+            <Label Text="{Binding TotalAmount}"
+                   FontAttributes="Bold" 
+                   TextColor="Black"/>
+        </StackLayout>
+
+        <StackLayout Grid.Row="4"
+                     Orientation="Horizontal" 
+                     Spacing="2" 
+                     HorizontalOptions="Start">
+            <Label Text="Método de Pago:" 
+                   TextColor="Gray"/>
+            <Label Text="{Binding PaymentMethod}"
+                   TextColor="Black"/>
+        </StackLayout>
+
+    </Grid>
+
+</ContentView>

@@ -1,0 +1,85 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="Lockec.Views.Account.EmployeeDetailsView"
+             NavigationPage.HasNavigationBar="False"
+             BindingContext="{Binding Main, Source={StaticResource Locator}}">
+
+    <Grid BindingContext="{Binding NotVM}">
+        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
+
+        <Label Grid.Row="0" 
+                   Grid.ColumnSpan="2"
+                   Text="Datos del Agente" 
+                   TextColor="Black" 
+                   FontSize="Medium"
+                   VerticalTextAlignment="Center" 
+                   HorizontalTextAlignment="Center" 
+                   HorizontalOptions="Center"/>
+
+        <StackLayout Grid.Row="1" 
+                         Grid.Column="0" 
+                         Orientation="Horizontal" 
+                         Spacing="2" 
+                         HorizontalOptions="Start">
+                <Label Text="Nombre:" TextColor="Gray"/>
+            <Label Text="{Binding DriverName}" 
+                       TextColor="Black"/>
+            </StackLayout>
+
+            <StackLayout Grid.Row="2" 
+                         Grid.Column="0" 
+                         Orientation="Horizontal" 
+                         Spacing="2" 
+                         HorizontalOptions="Start">
+                <Label Text="Apellido:" TextColor="Gray"/>
+            <Label Text="{Binding DriverLastName}" TextColor="Black"/>
+            </StackLayout>
+
+            <StackLayout Grid.Row="3" 
+                         Grid.Column="0" 
+                         Orientation="Horizontal" 
+                         Spacing="2" 
+                         HorizontalOptions="Start">
+                <Label Text="C.I:" TextColor="Gray"/>
+            <Label Text="{Binding DriverID}" TextColor="Black"/>
+            </StackLayout>
+
+            <StackLayout Grid.Row="4" 
+                         Grid.Column="0" 
+                         Orientation="Horizontal" 
+                         Spacing="2" 
+                         HorizontalOptions="Start">
+                <Label Text="Cargo:" TextColor="Gray"/>
+            <Label Text="{Binding DriverWorkPosition}" TextColor="Black"/>
+            </StackLayout>
+
+        <ImageButton Grid.Row="1" 
+                             Grid.RowSpan="4"
+                             Grid.Column="1"
+                         Source="avatar3.png" 
+                         HeightRequest="80"
+                         WidthRequest="80"
+                     HorizontalOptions="Center"
+                     VerticalOptions="Center" 
+                     BackgroundColor="Transparent"/>
+
+
+    </Grid>
+
+</ContentView>

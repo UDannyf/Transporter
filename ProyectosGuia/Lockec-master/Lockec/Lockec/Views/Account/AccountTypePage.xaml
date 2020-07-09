@@ -1,0 +1,88 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:accountViews="clr-namespace:Lockec.Views.Account"
+             xmlns:loginViews="clr-namespace:Lockec.Views.Login"
+             xmlns:xfg="clr-namespace:XFGloss;assembly=XFGloss"
+             mc:Ignorable="d"
+             x:Class="Lockec.Views.Account.AccountTypePage"
+             NavigationPage.HasNavigationBar="False"
+             BindingContext="{Binding Main, Source={StaticResource Locator}}">
+
+    <!--DEGRADADO-->
+    <xfg:ContentPageGloss.BackgroundGradient>
+        <xfg:Gradient IsRotationLeftToRight="True"
+                      StartColor="#76AADB" 
+                      EndColor="#5E7ABB"/>
+    </xfg:ContentPageGloss.BackgroundGradient>
+    <!--FIN DEGRADADO-->
+
+    <Grid BindingContext="{Binding AccountVM}" 
+          Padding="30">
+        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <ImageButton Grid.Row="0"
+                     VerticalOptions="Start"
+                     HorizontalOptions="Start"
+                     WidthRequest="20"
+                     HeightRequest="20"
+                     Source="flecha_atras.png"
+                     BackgroundColor="Transparent"
+                     Command="{Binding NavigateToPageCommand}"
+                     CommandParameter="{x:Type loginViews:LoginPage}"/>
+
+
+        <Image Grid.Row="1"
+               Margin="50"
+               VerticalOptions="Start"
+               HorizontalOptions="Center"
+               Source="lockec_security.png"
+               Aspect="AspectFit"/>
+
+
+        <StackLayout Grid.Row="2"
+                     Orientation="Vertical"
+                     Spacing="30"
+                     HorizontalOptions="Center"
+                     VerticalOptions="Center">
+
+            <Label Text="Seleccione un tipo de cuenta" 
+                   TextColor="White" 
+                   FontSize="Medium" 
+                   HorizontalOptions="CenterAndExpand"/>
+
+            <StackLayout Orientation="Horizontal" 
+                         Spacing="30" 
+                         HorizontalOptions="CenterAndExpand">
+
+                <Button Text="Personal" 
+                        TextColor="White" 
+                        CornerRadius="5" 
+                        HorizontalOptions="Center" 
+                        BackgroundColor="#79c7d7" 
+                        Command="{Binding NavigateToPageCommand}"
+                        CommandParameter="{x:Type accountViews:PersonalAccountPage}"/>
+
+                <Button Text="Empresa" 
+                        TextColor="White" 
+                        CornerRadius="5" 
+                        HorizontalOptions="Center" 
+                        BackgroundColor="#79c7d7" 
+                        Command="{Binding NavigateToPageCommand}"
+                        CommandParameter="{x:Type accountViews:EnterpriseAccountPage}"/>
+
+            </StackLayout>
+
+        </StackLayout>
+
+    </Grid>
+
+</ContentPage>

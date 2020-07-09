@@ -1,0 +1,139 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<popup:PopupPage xmlns="http://xamarin.com/schemas/2014/forms"
+                 xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                 xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+                 xmlns:animations="clr-namespace:Rg.Plugins.Popup.Animations;assembly=Rg.Plugins.Popup"
+                 xmlns:popup="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+                 xmlns:gradient="clr-namespace:Lockec.Controllers.Gradient"
+                 mc:Ignorable="d"
+                 x:Class="Lockec.Views.PopUps.ServiceHistoryPopUpView"
+                 BindingContext="{Binding Main, Source={StaticResource Locator}}">
+
+    <popup:PopupPage.Animation>
+        <animations:ScaleAnimation 
+            PositionIn="Center"
+            PositionOut="Center"
+            ScaleIn="1.2"
+            ScaleOut="0.8"
+            DurationIn="400"
+            DurationOut="300"
+            EasingIn="SinOut"
+            EasingOut="SinIn"
+            HasBackgroundAnimation="True"/>
+    </popup:PopupPage.Animation>
+
+
+
+    <Frame CornerRadius="20"
+           Margin="40, 0"
+           Padding="0"
+           IsClippedToBounds="True"
+           HorizontalOptions="Center" 
+           VerticalOptions="Center">
+
+        <gradient:GradientLayout ColorsList="#D9D9D9, #FFFFFF, #D9D9D9" 
+                                 Mode="ToRight"
+                                 Padding="20">
+
+            <ImageButton Source="cancelar.png" 
+                         HeightRequest="20" 
+                         WidthRequest="20" 
+                         HorizontalOptions="End"
+                         BackgroundColor="Transparent"
+                         Clicked="ImageButton_Clicked"/>
+            
+            <Grid Padding="20"
+                  BindingContext="{Binding ServiceSumVM}">
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+                <StackLayout Grid.Row="0" 
+                             Spacing="0" 
+                             BackgroundColor="Transparent">
+
+                    <Label Text="{Binding Path=ServiceSelected.ReqService}" 
+                                   FontSize="Medium" 
+                                   TextColor="Black"/>
+
+                    <Label Text="{Binding Path=ServiceSelected.Status}" 
+                                   FontSize="Small" 
+                                   TextColor="#5E7ABB"/>
+                </StackLayout>
+
+
+            <StackLayout Grid.Row="2"
+                     Orientation="Horizontal" 
+                     Spacing="2" 
+                     HorizontalOptions="Start">
+                <Label Text="Fecha:" 
+                   TextColor="Gray"/>
+                    <Label Text="{Binding Path=ServiceSelected.Date}" 
+                   TextColor="Black"/>
+            </StackLayout>
+
+            <StackLayout Grid.Row="3"
+                     Orientation="Horizontal" 
+                     Spacing="2" 
+                     HorizontalOptions="Start">
+                <Label Text="Hora:" 
+                   TextColor="Gray"/>
+                    <Label Text="{Binding Path=ServiceSelected.StartTime, StringFormat='{0:hh\\:mm}'}"
+                       TextColor="Black"/>
+                <!--Label Text=" - "/>
+            <Label Text="{Binding EndTime, StringFormat='{0:hh\\:mm}'}"/-->
+            </StackLayout>
+
+            <StackLayout Grid.Row="4"
+                     Orientation="Horizontal" 
+                     Spacing="2" 
+                     HorizontalOptions="Start">
+                <Label Text="Monto a Pagar:" 
+                   TextColor="Gray"/>
+                    <Label Text="{Binding Path=ServiceSelected.TotalCost}"
+                   FontAttributes="Bold" 
+                   TextColor="Black"/>
+            </StackLayout>
+
+            <StackLayout Grid.Row="5"
+                     Orientation="Horizontal" 
+                     Spacing="2" 
+                     HorizontalOptions="Start">
+                <Label Text="Método de Pago:" 
+                   TextColor="Gray"/>
+                    <Label Text="{Binding Path=ServiceSelected.PaymentMethod}"
+                   TextColor="Black"/>
+            </StackLayout>
+
+            <Button Grid.Row="6" 
+                    Text="Registrar Anomalía"
+                    Command="{Binding ShowAnomalyPopUpViewCommand}"
+                    FontSize="Micro"
+                    CornerRadius="5"
+                    TextColor="White"
+                    BackgroundColor="#79C7D7"/>
+
+                <Button Grid.Row="7" 
+                    Text="Calificar Servicio"
+                    Command="{Binding ShowRateServicePageCommand}"
+                    FontSize="Micro"
+                    TextColor="Black"
+                    BackgroundColor="Transparent"/>
+
+            </Grid>
+        
+        </gradient:GradientLayout>
+        
+
+    </Frame>
+
+</popup:PopupPage>

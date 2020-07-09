@@ -1,0 +1,168 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:menu="clr-namespace:Lockec.Views.Menu"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:gradient="clr-namespace:Lockec.Controllers.Gradient"
+             mc:Ignorable="d"
+             x:Class="Lockec.Views.Services.SearchPage.SearchPlacePage"
+             NavigationPage.HasNavigationBar="False"
+             BindingContext="{Binding Main, Source={StaticResource Locator}}">
+    
+    <ContentPage.Content>
+
+        
+        <Grid RowSpacing="10">
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <gradient:GradientLayout Grid.RowSpan="4" 
+                                     Grid.ColumnSpan="2"
+                                     ColorsList="#D9D9D9, #FFFFFF, #D9D9D9" 
+                                     Mode="ToRight"/>
+
+
+            <ImageButton Grid.Row="0"
+                         Grid.Column="0"
+                         Margin="20,20,0,0"
+                         Source="flecha_atras.png"
+                         WidthRequest="15"
+                         HeightRequest="15"
+                         HorizontalOptions="Start"
+                         BackgroundColor="Transparent"
+                         BindingContext="{Binding MenuVM}"
+                         Command="{Binding NavigateCommand}"
+                         CommandParameter="{x:Type menu:MenuPage}"/>
+            
+            <Image Grid.Row="0"
+                   Grid.Column="1"
+                   Margin="0,20,20,0"
+                   Source="lockec_security.png"
+                   WidthRequest="100"
+                   HeightRequest="80"
+                   HorizontalOptions="End"
+                   BackgroundColor="Transparent"/>
+
+
+            <StackLayout Grid.Row="1"
+                         Grid.Column="0"
+                         Grid.ColumnSpan="2"
+                         BindingContext="{Binding MapVM}"
+                         Spacing="0"
+                         Padding="25, 20, 25, 5">
+
+                <Frame CornerRadius="10" 
+                           Padding="0" 
+                           IsClippedToBounds="True"
+                           VerticalOptions="FillAndExpand" 
+                           BackgroundColor="Transparent">
+
+                    <Grid HorizontalOptions="FillAndExpand" 
+                              VerticalOptions="FillAndExpand">
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <gradient:GradientLayout Grid.ColumnSpan="2" 
+                                                     ColorsList="#CAD0DD, #DEE4F1, #CAD0DD" 
+                                                     Mode="ToRight"/>
+
+                        <Image Grid.Column="0" 
+                               Source="pointer.png" 
+                               HeightRequest="20" 
+                               WidthRequest="20" 
+                               VerticalOptions="Center" 
+                               BackgroundColor="Transparent"/>
+
+                        <Entry Grid.Column="1" 
+                               Placeholder="¿En dónde necesitas el servicio?"
+                               Text="{Binding Origin}"
+                               FontSize="Small"
+                               x:Name="originEntry"
+                               ClassId="origin"
+                               ReturnType="Search"
+                               HorizontalOptions="FillAndExpand"/>
+
+
+                    </Grid>
+                </Frame>
+            </StackLayout>
+
+
+            <ListView Grid.Row="2"
+                      Grid.Column="0"
+                      Grid.ColumnSpan="2"
+                      BindingContext="{Binding MapVM}"
+                      BackgroundColor="Transparent"
+                      x:Name="lv"
+                      Margin="20,0"
+                      VerticalOptions="Fill"
+                      HasUnevenRows="true"
+                      SeparatorColor="Gray"
+                      ItemsSource="{Binding Places}"
+                      SelectedItem="{Binding PlaceSelected, Mode=TwoWay}">
+
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Grid Padding="15"
+                                  RowSpacing="2"
+                                  ColumnSpacing="15">
+
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <Image Source="pointer.png"
+                                       HeightRequest="20"
+                                       WidthRequest="20"
+                                       VerticalOptions="Center"
+                                       Grid.Row="0"
+                                       Grid.Column="0"
+                                       Grid.RowSpan="2"/>
+
+                                <Label LineBreakMode="MiddleTruncation"
+                                       Text="{Binding StructuredFormatting.MainText}"
+                                       Grid.Row="0"
+                                       Grid.Column="1"/>
+
+                                <Label LineBreakMode="MiddleTruncation"
+                                       Text="{Binding StructuredFormatting.SecondaryText}" 
+                                       TextColor="Gray" 
+                                       Grid.Row="1"
+                                       Grid.Column="1"/>
+                            </Grid>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+
+            <ActivityIndicator IsRunning="{Binding IsBusy}"
+                               Grid.Row="2"
+                               Grid.Column="0"
+                               Grid.ColumnSpan="2"
+                               BindingContext="{Binding MapVM}"
+                               HorizontalOptions="Center" 
+                               VerticalOptions="Start"
+                               Color="Black"/>
+        </Grid>
+
+    </ContentPage.Content>
+</ContentPage>

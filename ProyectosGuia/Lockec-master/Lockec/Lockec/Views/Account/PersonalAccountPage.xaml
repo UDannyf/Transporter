@@ -1,0 +1,137 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:custom="clr-namespace:Lockec.Controllers.CustomElements"
+             xmlns:gradient="clr-namespace:Lockec.Controllers.Gradient"
+             xmlns:accountViews="clr-namespace:Lockec.Views.Account"
+             mc:Ignorable="d"
+             x:Class="Lockec.Views.Account.PersonalAccountPage"
+             NavigationPage.HasNavigationBar="False"
+             BindingContext="{Binding Main, Source={StaticResource Locator}}">
+
+
+    <ScrollView>
+        <ScrollView.Content>
+            <Grid BindingContext="{Binding AccountVM}" 
+                  RowSpacing="20">
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <gradient:GradientLayout Grid.RowSpan="4" 
+                                 ColorsList="#D9D9D9, #FFFFFF, #D9D9D9" 
+                                 Mode="ToRight"/>
+
+                <ImageButton Grid.Row="0" 
+                     Source="exit.png" 
+                     WidthRequest="15" 
+                     HeightRequest="15" 
+                     BackgroundColor="Transparent" 
+                     HorizontalOptions="Start" 
+                     Margin="30,30,0,0"
+                     Command="{Binding NavigateToPageCommand}"
+                     CommandParameter="{x:Type accountViews:AccountTypePage}"/>
+
+                <StackLayout Grid.Row="1" 
+                     Spacing="10">
+
+                    <Label Text="CREAR CUENTA PERSONAL" 
+                   TextColor="#4C5471" 
+                   FontSize="Small" 
+                   HorizontalOptions="Center"/>
+
+                    <ImageButton Source="avatar.png" 
+                         HeightRequest="80" 
+                         WidthRequest="80" 
+                         BackgroundColor="Transparent"/>
+                </StackLayout>
+
+
+
+                <StackLayout Grid.Row="2"
+                     Spacing="0" 
+                     HorizontalOptions="CenterAndExpand" 
+                     Padding="20, 10, 20, 5">
+
+                    <Label Text="Número te teléfono móvil" 
+                   FontSize="Micro" 
+                   TextColor="#5E7ABB"/>
+
+                    <StackLayout Orientation="Horizontal" 
+                         Spacing="0" 
+                         HorizontalOptions="CenterAndExpand">
+
+                        <Image Source="flag.png" 
+                       WidthRequest="20" 
+                       HeightRequest="20"/>
+
+                        <Entry Text="{Binding Path=AccountInstance.PhoneNumber}"
+                       TextColor="#808080"
+                       WidthRequest="300"  
+                       IsReadOnly="True"/>
+
+                    </StackLayout>
+
+
+                    <Entry x:Name="Ent_name" 
+                   Text="{Binding Path=PersonalAccountInstance.Name, Mode=TwoWay}"
+                   Placeholder="Nombres" 
+                   PlaceholderColor="#808080" 
+                   Keyboard="Text"/>
+
+                    <Entry x:Name="Ent_lastname" 
+                   Text="{Binding Path=PersonalAccountInstance.Lastname, Mode=TwoWay}"
+                   Placeholder="Apellidos" 
+                   PlaceholderColor="#808080" 
+                   Keyboard="Text"/>
+
+                    <Entry x:Name="Ent_email" 
+                   Text="{Binding Path=AccountInstance.Email, Mode=TwoWay}"
+                   Placeholder="Correo Electrónico"
+                   PlaceholderColor="#808080"
+                   Keyboard="Email"/>
+
+                    <custom:CustomDatePicker x:Name="DP_dob"
+                                     Placeholder="Fecha de Nacimiento"
+                                     PlaceholderColor="#808080"
+                                     Underline="True"
+                                     Format="D"
+                                     Date="{Binding MyDate, Mode=TwoWay}"/>
+
+                    <Entry x:Name="Ent_idNumber" 
+                   Text="{Binding Path=PersonalAccountInstance.IdNumber, Mode=TwoWay}"
+                   Placeholder="Número Documento de Identificación" 
+                   PlaceholderColor="#808080" 
+                   Keyboard="Numeric"/>
+
+                    <Entry x:Name="Ent_address" 
+                   Text="{Binding Path=AccountInstance.Address, Mode=TwoWay}"
+                   Placeholder="Dirección" 
+                   PlaceholderColor="#808080" 
+                   Keyboard="Text"/>
+
+                </StackLayout>
+
+
+
+                <ImageButton Grid.Row="3" 
+                     Source="next.png"
+                     VerticalOptions="End"
+                     HorizontalOptions="End"
+                     WidthRequest="30"
+                     HeightRequest="30"
+                     BackgroundColor="Transparent"
+                     Margin="0,0,30,30"
+                     Command="{Binding AccountConfirmationPageCommand}"/>
+
+
+            </Grid>
+        </ScrollView.Content>
+    </ScrollView>
+</ContentPage>

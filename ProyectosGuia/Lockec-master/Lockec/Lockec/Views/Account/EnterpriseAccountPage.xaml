@@ -1,0 +1,129 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:gradient="clr-namespace:Lockec.Controllers.Gradient"
+             mc:Ignorable="d"
+             xmlns:accountViews="clr-namespace:Lockec.Views.Account"
+             x:Class="Lockec.Views.Account.EnterpriseAccountPage"
+             NavigationPage.HasNavigationBar="False"
+             BindingContext="{Binding Main, Source={StaticResource Locator}}">
+
+    <ScrollView>
+        <ScrollView.Content>
+            <Grid BindingContext="{Binding AccountVM}" 
+                  RowSpacing="20">
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <gradient:GradientLayout Grid.RowSpan="4" 
+                                 ColorsList="#D9D9D9, #FFFFFF, #D9D9D9" 
+                                 Mode="ToRight"/>
+
+                <ImageButton Grid.Row="0" 
+                     Source="exit.png" 
+                     WidthRequest="15" 
+                     HeightRequest="15" 
+                     BackgroundColor="Transparent" 
+                     HorizontalOptions="Start" 
+                     Margin="30,30,0,0"
+                     Command="{Binding NavigateToPageCommand}"
+                     CommandParameter="{x:Type accountViews:AccountTypePage}"/>
+
+                <StackLayout Grid.Row="1" 
+                     Spacing="10">
+
+                    <Label Text="CREAR CUENTA EMPRESA" 
+                   TextColor="#4C5471" 
+                   FontSize="Small" 
+                   HorizontalOptions="Center"/>
+
+                    <ImageButton Source="avatar.png" 
+                         HeightRequest="80" 
+                         WidthRequest="80" 
+                         BackgroundColor="Transparent"/>
+                </StackLayout>
+
+                <StackLayout Grid.Row="2" 
+                     Spacing="0" 
+                     HorizontalOptions="CenterAndExpand" 
+                     Padding="20, 10, 20, 5">
+
+                    <Label Text="Número te teléfono móvil" 
+                   FontSize="Micro" 
+                   TextColor="#5E7ABB"/>
+
+                    <StackLayout Orientation="Horizontal" 
+                         Spacing="0" 
+                         HorizontalOptions="CenterAndExpand">
+
+                        <Image Source="flag.png" 
+                       WidthRequest="20" 
+                       HeightRequest="20"/>
+
+                        <Entry Text="{Binding Path=AccountInstance.PhoneNumber}"
+                       TextColor="#808080"
+                       WidthRequest="300"  
+                       IsReadOnly="True"/>
+
+                    </StackLayout>
+
+                    <Entry Text="{Binding Path=EnterpriseAccountInstance.Ruc, Mode=TwoWay}"
+                   Placeholder="RUC" 
+                   PlaceholderColor="#808080" 
+                   Keyboard="Numeric"/>
+
+                    <Entry Text="{Binding Path=EnterpriseAccountInstance.EnterpriseName, Mode=TwoWay}"
+                   Placeholder="Nombre de la Empresa" 
+                   PlaceholderColor="#808080" 
+                   Keyboard="Text"/>
+
+                    <Entry Text="{Binding Path=EnterpriseAccountInstance.LegalRepresentativeName, Mode=TwoWay}"
+                   Placeholder="Representante Legal"
+                   PlaceholderColor="#808080"
+                   Keyboard="Text"/>
+
+                    <Picker SelectedItem="{Binding Path=AccountInstance.City, Mode=TwoWay}"
+                    Title="Ciudad" 
+                    TitleColor="#808080" 
+                    TextColor="Black" 
+                    HorizontalOptions="FillAndExpand">
+                        <Picker.Items>
+                            <x:String>Guayaquil</x:String>
+                            <x:String>Quito</x:String>
+                            <x:String>Cuenca</x:String>
+                        </Picker.Items>
+                    </Picker>
+
+                    <Entry Text="{Binding Path=AccountInstance.Email, Mode=TwoWay}"
+                   Placeholder="Correo Electrónico" 
+                   PlaceholderColor="#808080" 
+                   Keyboard="Email"/>
+
+                    <Entry Text="{Binding Path=AccountInstance.Address, Mode=TwoWay}"
+                   Placeholder="Dirección" 
+                   PlaceholderColor="#808080" 
+                   Keyboard="Text"/>
+
+                </StackLayout>
+
+                <ImageButton Grid.Row="3" 
+                     Source="next.png"
+                     VerticalOptions="End"
+                     HorizontalOptions="End"
+                     WidthRequest="30"
+                     HeightRequest="30"
+                     BackgroundColor="Transparent"
+                     Margin="0,0,30,30"
+                     Command="{Binding EnterpriseConfirmationPageCommand}"/>
+
+            </Grid>
+        </ScrollView.Content>
+    </ScrollView>
+</ContentPage>
